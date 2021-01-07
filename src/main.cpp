@@ -1,12 +1,5 @@
 #include "main.h"
 
-#define QUAD_TOP_PORT 'C'
-#define QUAD_BOTTOM_PORT 'D'
-
-
-
-
-
 
 /**
  * A callback function for LLEMU's center button.
@@ -33,15 +26,11 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize();
 
-
 	pros::lcd::register_btn1_cb(on_center_button);
-pros::ADIEncoder encoder (QUAD_TOP_PORT, QUAD_BOTTOM_PORT);
-//pros::ADIEncoder encoderTwo ('C', 'D', false);
-	//pros::ADIEncoder encoderThree ('E', 'F', false);
 
-
-
-
+	encoderOne.reset();
+	encoderTwo.reset();
+	encoderThree.reset();
 }
 
 /**
@@ -73,10 +62,7 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous(
-
-
-) {}
+void autonomous() {}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -92,23 +78,16 @@ void autonomous(
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-while(true){
 
-//drive controls
+	while (true) {
 
-setDriveMotors();
-setIntakeMotors();
-setIndexerMotor();
-encoderPositions();
+		//driver controls
+		setDriveMotors();
+		setIntakeMotors();
+		setIndexerMotor();
+		
+		encoderPositions();
 
-
-
-
-
-	pros::delay(10);
-
-}
-
-
-
+		pros::delay(10);
+	}
 }
