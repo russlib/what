@@ -87,7 +87,7 @@ void opcontrol() {
 		//driver controls
 		setDriveMotors();
 		setIntakeMotors();
-		//setIndexerMotor();
+		setIndexerMotor();
 		//intakeWidener();
 
 		encoderPositions();
