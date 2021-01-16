@@ -1,7 +1,7 @@
 #include "main.h"
 
 // Helper functions
-int intakeWidener();
+void  intakeWidener();
 void setIntakeRight(int inPowerR);
 
 void setIntakeLeft(int inPowerL);

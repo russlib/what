@@ -3,7 +3,7 @@
 
 //helper functions
 
-int intakeWidener(){
+void intakeWidener(){
 
 //todo check to see what efficency valuse give
 //changed to opening with potentiometer
@@ -23,7 +23,7 @@ int intakeWidener(){
        setIntakeLeft(intakeWidePowerL);
 }
 
-
+}
 
 
 
@@ -39,7 +39,7 @@ smoothEffiency = 10 * (smoothEffiency * 0.9 + averageEfficency * 0.1);
 
 return smoothEffiency;
 */
-}
+
 
 
 
@@ -96,8 +96,12 @@ void setIndexerMotor() {
 
     int blooperPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
 
-intakeWidener();
+
   }
+
+
+
+
 
 
 
