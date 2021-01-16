@@ -1,7 +1,7 @@
 {
     "py/object": "pros.conductor.project.Project",
     "py/state": {
-        "project_name": "what",
+        "project_name": "1022CompReady",
         "target": "v5",
         "templates": {
             "kernel": {

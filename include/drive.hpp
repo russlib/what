@@ -11,3 +11,5 @@ void driveXY(double yDirec, double xDirec, double turningSpeed);
 
 //void motorPosition();
 void encoderPositions();
+
+int intakeWidener();

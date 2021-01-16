@@ -33,21 +33,24 @@ void encoderPositions() {
 
 	std::cout << "Encoder Position: " << encoderOne.get_value() << std::endl;
 
-	std::string encoderText = std::to_string(encoderOne.get_value());
-	pros::lcd::set_text(0, encoderText);
+
 //encoder two is in reality encoder 3
 	std::string encoderTextThree = std::to_string(encoderThree.get_value());
-	pros::lcd::set_text(1, encoderTextThree);
+	pros::lcd::set_text(0, encoderTextThree);
 
-	std::string motorText = std::to_string(frontLeft.get_position());
-	pros::lcd::set_text(2, motorText);
+	//std::string motorText = std::to_string(frontLeft.get_position());
+	//pros::lcd::set_text(2, motorText);
 
-	std::string motorEfficency = std::to_string(frontLeft.get_efficiency());
-  // pros::lcd::set_text(3, motorEfficency);
+
+
+
 
 	if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
-		pros::lcd::set_text(1, encoderText);
-		pros::lcd::set_text(2,motorText);
+//std::string encoderTextOne = std::to_string(encoderOne.get_value());
+		//pros::lcd::set_text(1, encoderTextOne);
+		std::string potentTest = std::to_string(rightPotent.get_value());
+	  pros::lcd::set_text(2, potentTest);
+		//pros::lcd::set_text(2,motorText);
 	}
 
 	if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {

@@ -17,3 +17,5 @@ extern pros::Controller controller;
 extern pros::ADIEncoder encoderOne;
 extern pros::ADIEncoder encoderTwo;
 extern pros::ADIEncoder encoderThree;
+extern pros::ADIAnalogIn rightPotent;
+extern pros::ADIAnalogIn leftPotent;

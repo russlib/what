@@ -1,5 +1,5 @@
 #include "main.h"
-
+#define POTENTIOMETER_PORT 'A'
 
 /**
  * A callback function for LLEMU's center button.
@@ -26,11 +26,14 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize();
 
+
 	pros::lcd::register_btn1_cb(on_center_button);
+
 
 	encoderOne.reset();
 	encoderTwo.reset();
 	encoderThree.reset();
+
 }
 
 /**
@@ -84,8 +87,9 @@ void opcontrol() {
 		//driver controls
 		setDriveMotors();
 		setIntakeMotors();
-		setIndexerMotor();
-		
+		//setIndexerMotor();
+		//intakeWidener();
+
 		encoderPositions();
 
 		pros::delay(10);
