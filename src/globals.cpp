@@ -15,7 +15,7 @@ pros::Motor intakeLeft(16, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODE
 // The part right after the ball intakes
 pros::Motor indexer(17, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
 // The part the bloops the ball out into the top of the goal
-pros::Motor blooper(12, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor blooper(3, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // Controller
 pros::Controller controller(pros::E_CONTROLLER_MASTER);

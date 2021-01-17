@@ -15,15 +15,119 @@ void intakeWidener(){
       int intakeWidePowerR = (intakeTarget - rightPotent.get_value());
 	    setIntakeRight(intakeWidePowerR);
   }
-
-
-
-     if((intakeTarget > leftPotent.get_value()) or (intakeTarget +300 < leftPotent.get_value())  ){
+      if((intakeTarget > leftPotent.get_value()) or (intakeTarget +300 < leftPotent.get_value())  ){
        int intakeWidePowerL = (intakeTarget - leftPotent.get_value());
        setIntakeLeft(intakeWidePowerL);
 }
 
 }
+
+void setIntakeRight(int inPowerR) {
+
+	intakeRight = inPowerR;
+}
+
+void setIntakeLeft(int inPowerL){
+
+  	intakeLeft = -inPowerL;
+}
+
+//the lower mech that picks up the balls after the intakes
+void setIndexer(int iPower) {
+	indexer = -iPower;
+
+}
+void setBlooper(int blooperPower){
+blooper = blooperPower;
+
+}
+
+void setIntakeMotors(){
+  if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
+  {
+    intakeWidener();
+  }
+
+
+else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+int powerIntakes = 127;
+
+setIntakeLeft(-powerIntakes);
+setIntakeRight(-powerIntakes);
+}
+
+else{
+setIntakeLeft(0);
+setIntakeRight(0);
+
+}
+
+
+
+
+}
+
+
+
+
+void setIndexerMotor() {
+  /*
+ if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+
+   int power = 127;
+ 	setIndexer(power);
+}
+*/
+
+int powerElevator = 127;
+if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+ setIndexer(-powerElevator);
+ setBlooper(powerElevator);
+}
+
+else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+setIndexer(powerElevator);
+setBlooper(powerElevator);
+
+}
+else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+  setIndexer(-powerElevator);
+  setBlooper(-powerElevator);
+}
+
+else{
+  setIndexer(0);
+  setBlooper(0);
+}
+
+
+
+/*
+int powerElevator = -127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) -  controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+setIndexer(powerElevator);
+
+if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+  setBlooper(-powerElevator);
+}
+else{
+setBlooper(powerElevator);
+}
+*/
+
+
+
+}
+/*
+else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+  int powerReverse = -127;
+  setIndexer(powerReverse);
+  setBlooper(powerReverse);
+
+
+}
+*/
+
+
 
 
 
@@ -47,21 +151,18 @@ return smoothEffiency;
 
 
 
-void setIntakeRight(int inPowerR) {
 
-	intakeRight = inPowerR;
+
+/*
+void setblooperMotors(int blooperP){
+blooper = -blooperP;
+
 }
+*/
 
-void setIntakeLeft(int inPowerL){
 
-  	intakeLeft = -inPowerL;
-}
 
-//the lower mech that picks up the balls after the intakes
-void setIndexer(int iPower, int iSpeed) {
-	indexer = iPower;
-	blooper = -iPower;
-}
+
 
 
 
@@ -70,34 +171,26 @@ void setIndexer(int iPower, int iSpeed) {
 
 
 
-void setIntakeMotors() {
 
+  /*
 
-  if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
-  {
-    intakeWidener();
-  }
+  else{
 
-else{
-  int power = 127 * controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-	setIntakeLeft(-power);
+if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+  int power = 127;
+  setIntakeLeft(-power);
   setIntakeRight(-power);
-     }
+  setIndexer(power,power);
+}
+
+
+}*/
   //int power = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) -  controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
 	//setIntake(power);
-                         }
-
-void setIndexerMotor() {
 
 
 
 
-  if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-
-    int blooperPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
-
-
-  }
 
 
 
@@ -119,7 +212,7 @@ void setIndexerMotor() {
 
 
 */
-}
+
 
 
 
