@@ -79,8 +79,8 @@ void autonomous() {
 
      .withGains(
 
-			 {0.0005, 0, 00.00001}, // Distance controller gains 0.00005 works well but it stops and tilts bot
-			 {0.0005, 0, 0.0000020},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
+			 {0.0005, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
+			 {0.0006, 00.00001, 0.0000020},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
 			 {0.0001, 0, 00.00001}  // Angle controller gains (helps drive straight)
 			 /*
 
@@ -125,7 +125,7 @@ this works mostly
 
 
 
-
+/*
 		 const double liftkP = 0.001;
 		 const double liftkI = 0.0001;
 		 const double liftkD = 0.0001;
@@ -154,20 +154,155 @@ AsyncPosControllerBuilder()
 	.withMotor(17) // lift motor port 3
 	.withGains({liftkP, liftkI, liftkD})
 	.build();
-
+*/
 
 	std::shared_ptr<XDriveModel> model = std::static_pointer_cast<XDriveModel>(
 	 		std::static_pointer_cast<DefaultOdomChassisController>(chassis)->getModel()
 	 	);
 
 
-	chassis->setState({2_ft, 10_ft, 0_deg});
-	chassis -> turnToPoint({2_ft, 11_ft});
 
-	flywheel -> setTarget(1500);
+
+		blooper.move_relative(1000, 600);
+		pros::delay(15000);
+
+
+//auton for mid goal start auton
+
+//	chassis->setState({5_ft, 10.75_ft, 210_deg});
+//	blooper.move_relative(400, 100);
+//	pros::delay(400);
+//	chassis -> driveToPoint({3_ft, 9_ft});
+	//chassis -> turnToPoint({0_ft, 12_ft});
+
+
+
+//	chassis->setState({2_ft, 8_ft, 0_deg});
+	//blooper.move_relative(400, 100);
+	//pros::delay(400);
+//	chassis -> driveToPoint({8_ft, 8_ft});
+	//chassis -> driveToPoint({2_ft, 8_ft});
+
+
+	//intakeRight.move_relative(-30000, 600);
+	//intakeLeft.move_relative(30000, 600);
+	//chassis -> driveToPoint({5_ft, 7_ft},true);
+
+/*
+	chassis -> driveToPoint({2_ft, 10_ft});
+	chassis -> turnToPoint({0_ft, 12_ft});
 	blooper = 127;
-	asIntakeRight -> setTarget(225);
-	asIntakeLeft -> setTarget(225);
+	indexer = -127;
+	chassis -> driveToPoint({1.4_ft, 10.6_ft});
+	intakeRight.move_relative(-30000, 100);
+	intakeLeft.move_relative(30000, 100);
+	chassis -> driveToPoint({0.7_ft, 11.5_ft});
+	chassis->moveDistance(-0.07_ft);
+	chassis->moveDistance(0.07_ft);
+	chassis->moveDistance(-0.07_ft);
+	chassis->moveDistance(0.07_ft);
+	chassis->moveDistance(-0.07_ft);
+	chassis->moveDistance(0.07_ft);
+	chassis->moveDistance(-0.07_ft);
+
+*/
+
+
+
+
+		chassis->moveDistance(3_ft);
+
+
+	//chassis -> turnToPoint({2_ft, 10_ft});
+	//chassis -> driveToPoint({1_ft, 11_ft});
+
+
+
+
+
+
+/*
+	chassis->setState({1_ft, 11_ft, 315_deg});
+	blooper.move_relative(100, 100);
+	intakeRight.move_relative(-3000, 100);
+	intakeLeft.move_relative(3000, 100);
+	chassis -> driveToPoint({2_ft, 10_ft});
+	chassis -> turnToPoint({6_ft, 8_ft});
+	chassis -> driveToPoint({6_ft, 8_ft});
+	chassis ->  setMoveThreshold(10_cm);
+	chassis -> turnToPoint({6_ft, 6.5_ft});
+	chassis -> driveToPoint({6_ft, 6.5_ft});
+	chassis->moveDistance(-1_ft);
+	chassis->moveDistance(1_ft);
+	chassis->moveDistance(-1_ft);
+	chassis->moveDistance(1_ft);
+
+*/
+
+
+
+	//sets the state as near the mid globals
+
+	// starts the blooper to release the ball
+  //start intakes to flip out
+	//start moving to next point
+	//(gets to point)
+	// and makes the intakes open wide
+ //makes the elevator go full powerReverse
+ //				perhaps close on the ball but it should work without aswell
+ // stops in front of the goal
+ //intakes finish off their spinning and ball goes in
+ // intakes and stuff stop
+ // robot backs up near middle
+ // intakes open
+ // robot goes forward and intakes
+ // intakes and stuff close around ball and it moves a bit
+// elevator moves and it goes into goal
+//robot backs up
+
+
+
+
+
+
+	//start the intakes to put them in front of the bot
+
+	//while intakes are being release the bot is driving to prime for left goal
+
+	// get to turn spot and turni
+
+
+
+
+
+
+
+
+
+
+	chassis -> turnToPoint({2_ft, 11_ft});
+	chassis -> turnAngle(-5_deg);
+	intakeRight.move_relative(-28000, 600);
+	intakeLeft.move_relative(28000, 600);
+	chassis -> moveDistance(1.35_ft);
+
+	chassis -> moveDistance(0.01_ft);
+	chassis -> moveDistance(-0.01_ft);
+	chassis -> moveDistance(0.01_ft);
+	chassis -> moveDistance(-0.01_ft);
+	chassis -> moveDistance(-0.01_ft);
+	chassis -> moveDistance(0.01_ft);
+
+
+pros::delay(7000);
+chassis -> moveDistance(-0.01_ft);
+chassis -> moveDistance(0.01_ft);
+chassis -> moveDistance(-0.01_ft);
+chassis -> moveDistance(-0.01_ft);
+chassis -> moveDistance(0.01_ft);
+
+
+
 
 
 }

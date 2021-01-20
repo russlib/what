@@ -8,7 +8,7 @@ void intakeWidener(){
 //todo check to see what efficency valuse give
 //changed to opening with potentiometer
 
-    double thisWide = 1000;
+    double thisWide = 700;
     double intakeTarget = thisWide;
 
     if((intakeTarget > rightPotent.get_value()) or (intakeTarget +300 < rightPotent.get_value())){
@@ -46,6 +46,20 @@ void setIntakeMotors(){
   if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
   {
     intakeWidener();
+  }
+
+  else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+  int powerIntakes = 127;
+
+  setIntakeLeft(-powerIntakes);
+  setIntakeRight(-powerIntakes);
+  }
+
+  else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
+  int powerIntakes = 127;
+
+  setIntakeLeft(-powerIntakes);
+  setIntakeRight(-powerIntakes);
   }
 
 
