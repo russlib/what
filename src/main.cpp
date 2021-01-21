@@ -1,5 +1,5 @@
 #include "main.h"
-#define POTENTIOMETER_PORT 'A'
+
 
 /**
  * A callback function for LLEMU's center button.
@@ -23,6 +23,13 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+
+
+
+
+
+
+
 void initialize() {
 	pros::lcd::initialize();
 
@@ -79,8 +86,8 @@ void autonomous() {
 
      .withGains(
 
-			 {0.0005, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
-			 {0.0006, 00.00001, 0.0000020},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
+			 {0.0008, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
+			 {0.0008, 00.00001, 0.0000020},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
 			 {0.0001, 0, 00.00001}  // Angle controller gains (helps drive straight)
 			 /*
 
@@ -114,15 +121,15 @@ this works mostly
      // Green gearset
      // specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
      // specify the middle encoder distance (1 in) and diameter (2.75 in)
-     .withDimensions(AbstractMotor::gearset::green, {{2.75_in, 14.0_in, 2.15_in, 2.75_in}, quadEncoderTPR})
+     .withDimensions(AbstractMotor::gearset::green, {{2.74_in, 14.0_in, 2.15_in, 2.74_in}, quadEncoderTPR})
      .withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		 .withClosedLoopControllerTimeUtil(5,
 		 5,
-	25_ms)
+	50_ms)
 
 
      .buildOdometry();
-
+//pros::ADIDigitalIn left_bumper ('A');
 
 
 /*
@@ -161,10 +168,37 @@ AsyncPosControllerBuilder()
 	 	);
 
 
+		//while(left_bumper.get_value() == 0){
+			//blooper = 100;
+	//	pros::delay(50);}
+		//	chassis->moveDistance(-0.40_ft);
 
 
-		blooper.move_relative(1000, 600);
-		pros::delay(15000);
+		blooper.move_relative(2000, 600);
+			pros::delay(110);
+		chassis->moveDistance(-0.40_ft);
+		blooper = 127;
+		indexer = -127;
+    pros::delay(120);
+		chassis->moveDistance(4.9_ft);
+
+
+
+		chassis -> turnAngle(125_deg);
+		pros::delay(150);
+
+		chassis -> moveDistance(1.8_ft);
+		pros::delay(50);
+	 	 intakeRight.move_relative(-28000, 600);
+		 intakeLeft.move_relative(28000, 600);
+		chassis -> moveDistance(-0.05_ft);
+
+		pros::delay(50);
+		chassis -> moveDistance(-1.8_ft);
+
+
+	pros::delay(7000);
+	chassis -> moveDistance(-0.05_ft);
 
 
 //auton for mid goal start auton
@@ -210,7 +244,7 @@ AsyncPosControllerBuilder()
 
 
 
-		chassis->moveDistance(3_ft);
+
 
 
 	//chassis -> turnToPoint({2_ft, 10_ft});
@@ -280,26 +314,8 @@ AsyncPosControllerBuilder()
 
 
 
-	chassis -> turnToPoint({2_ft, 11_ft});
-	chassis -> turnAngle(-5_deg);
-	intakeRight.move_relative(-28000, 600);
-	intakeLeft.move_relative(28000, 600);
-	chassis -> moveDistance(1.35_ft);
-
-	chassis -> moveDistance(0.01_ft);
-	chassis -> moveDistance(-0.01_ft);
-	chassis -> moveDistance(0.01_ft);
-	chassis -> moveDistance(-0.01_ft);
-	chassis -> moveDistance(-0.01_ft);
-	chassis -> moveDistance(0.01_ft);
 
 
-pros::delay(7000);
-chassis -> moveDistance(-0.01_ft);
-chassis -> moveDistance(0.01_ft);
-chassis -> moveDistance(-0.01_ft);
-chassis -> moveDistance(-0.01_ft);
-chassis -> moveDistance(0.01_ft);
 
 
 
