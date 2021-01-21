@@ -86,9 +86,9 @@ void autonomous() {
 
      .withGains(
 
-			 {0.0008, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
-			 {0.0008, 00.00001, 0.0000020},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
-			 {0.0001, 0, 00.00001}  // Angle controller gains (helps drive straight)
+			 {0.0009, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
+			 {0.0009,0, 0.000015},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
+			 {0.0007, 0, 00.00001}  // Angle controller gains (helps drive straight)
 			 /*
 
 this works mostly
@@ -125,7 +125,7 @@ this works mostly
      .withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		 .withClosedLoopControllerTimeUtil(5,
 		 5,
-	50_ms)
+	25_ms)
 
 
      .buildOdometry();
@@ -173,8 +173,9 @@ AsyncPosControllerBuilder()
 	//	pros::delay(50);}
 		//	chassis->moveDistance(-0.40_ft);
 
-
+pros::delay(110);
 		blooper.move_relative(2000, 600);
+
 			pros::delay(110);
 		chassis->moveDistance(-0.40_ft);
 		blooper = 127;
@@ -184,20 +185,24 @@ AsyncPosControllerBuilder()
 
 
 
-		chassis -> turnAngle(125_deg);
-		pros::delay(150);
+		chassis -> turnAngle(127_deg);
+		pros::delay(125);
+     setIntakeLeft(127);
+		 setIntakeRight(-127);
 
+		//intakeRight = -127;
+	//	intakeLeft = 127;
 		chassis -> moveDistance(1.8_ft);
+
 		pros::delay(50);
-	 	 intakeRight.move_relative(-28000, 600);
-		 intakeLeft.move_relative(28000, 600);
+
 		chassis -> moveDistance(-0.05_ft);
 
 		pros::delay(50);
 		chassis -> moveDistance(-1.8_ft);
 
 
-	pros::delay(7000);
+	pros::delay(10000);
 	chassis -> moveDistance(-0.05_ft);
 
 
