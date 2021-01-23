@@ -1,6 +1,4 @@
 #include "main.h"
-#define POTENTIOMETER_PORTG 'G'
-#define POTENTIOMETER_PORT 'H'
 
 // Drive motors
 pros::Motor frontLeft(1, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
@@ -25,7 +23,6 @@ pros::ADIEncoder encoderOne('C', 'D', false);
 pros::ADIEncoder encoderTwo('A', 'B', false);
 pros::ADIEncoder encoderThree('E', 'F', false);
 
-
-
-  pros::ADIAnalogIn leftPotent (POTENTIOMETER_PORTG);
-  pros::ADIAnalogIn rightPotent (POTENTIOMETER_PORT);
+pros::ADIAnalogIn leftPotent('G');
+pros::ADIAnalogIn rightPotent('H');
+pros::ADIDigitalIn limitOne({{9,'A'}});

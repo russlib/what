@@ -1,6 +1,7 @@
 #include "main.h"
 
 
+
 /**
  * A callback function for LLEMU's center button.
  *
@@ -35,7 +36,6 @@ void initialize() {
 
 
 	pros::lcd::register_btn1_cb(on_center_button);
-
 
 	encoderOne.reset();
 	encoderTwo.reset();
@@ -74,136 +74,122 @@ void competition_initialize() {}
  */
 void autonomous() {
 
+	std::shared_ptr<OdomChassisController> chassis = ChassisControllerBuilder()
+		.withMotors(
+			1,  // Top left
+			-7, // Top right (reversed)
+			-14, // Bottom right (reversed)
+			15   // Bottom left
+		)
+		.withGains(
+			{0.0009, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
+			{0.0009,0, 0.000015},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
+			{0.0007, 0, 00.00001}  // Angle controller gains (helps drive straight)
+			/*
+			this works mostly
+			{0.001, 0, 0.0001}, // Distance controller gains
+			{0.001, 0, 00.00007},// 000006 works well // Turn controller gains 0.002 0 0.0001
+			{0.001, 0, 00.00001}
+			// {0.001, 0, 0.0001}, // Distance controller gains
+			// {0.0008, 0, 0.00005}, // Turn controller gains
+			// {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
+			{0.001,0, 0.0001}, // Distance controller gains
+			{0.0008, 0.00001, 0.00005}, // Turn controller gains
+			{0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
+			*/
+			/* best so far
+			{0.001, 0, 0.0001}, // Distance controller gains
+			{0.0008, 0, 0.00005}, // Turn controller gains
+			{0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
+			*/
+		)
+		.withSensors(
+			ADIEncoder{'E', 'F'}, // left encoder
+			ADIEncoder{'C', 'D', true},  // right encoder (reversed)
+			ADIEncoder{'A', 'B'}  // middle encoder
+		)
+		// Green gearset
+		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
+		// specify the middle encoder distance (1 in) and diameter (2.75 in)
+		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 14.2_in, 2.15_in, 2.75_in}, quadEncoderTPR})
+		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
+		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
+		.buildOdometry();
 
 
-	 std::shared_ptr<OdomChassisController> chassis = ChassisControllerBuilder()
-     .withMotors(
-         1,  // Top left
-         -7, // Top right (reversed)
-         -14, // Bottom right (reversed)
-         15   // Bottom left
-     )
-
-     .withGains(
-
-			 {0.0009, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
-			 {0.0009,0, 0.000015},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
-			 {0.0007, 0, 00.00001}  // Angle controller gains (helps drive straight)
-			 /*
-
-this works mostly
-
-			 {0.001, 0, 0.0001}, // Distance controller gains
-			 {0.001, 0, 00.00007},// 000006 works well // Turn controller gains 0.002 0 0.0001
-			 {0.001, 0, 00.00001}
+	//pros::ADIDigitalIn left_bumper ('A');
 
 
-			 			// {0.001, 0, 0.0001}, // Distance controller gains
-			 			// {0.0008, 0, 0.00005}, // Turn controller gains
-			 			// {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
-
-         {0.001,0, 0.0001}, // Distance controller gains
-         {0.0008, 0.00001, 0.00005}, // Turn controller gains
-         {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
-*/
-/* best so far
-				 {0.001, 0, 0.0001}, // Distance controller gains
-         {0.0008, 0, 0.00005}, // Turn controller gains
-         {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
-    */
-		 )
-     .withSensors(
-         ADIEncoder{'E', 'F'}, // left encoder
-         ADIEncoder{'C', 'D', true},  // right encoder (reversed)
-         ADIEncoder{'A', 'B'}  // middle encoder
-     )
-
-     // Green gearset
-     // specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
-     // specify the middle encoder distance (1 in) and diameter (2.75 in)
-     .withDimensions(AbstractMotor::gearset::green, {{2.74_in, 14.0_in, 2.15_in, 2.74_in}, quadEncoderTPR})
-     .withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
-		 .withClosedLoopControllerTimeUtil(5,
-		 5,
-	25_ms)
-
-
-     .buildOdometry();
-//pros::ADIDigitalIn left_bumper ('A');
-
-
-/*
-		 const double liftkP = 0.001;
-		 const double liftkI = 0.0001;
-		 const double liftkD = 0.0001;
-
-
-		 std::shared_ptr<AsyncPositionController<double, double>> asIntakeRight =
-  AsyncPosControllerBuilder()
-    .withMotor(19) // lift motor port 3
-    .withGains({liftkP, liftkI, liftkD})
-    .build();
-
-		std::shared_ptr<AsyncPositionController<double, double>> asIntakeLeft =
- AsyncPosControllerBuilder()
-	 .withMotor(16) // lift motor port 3
-	 .withGains({liftkP, liftkI, liftkD})
-	 .build();
-
-		std::shared_ptr<AsyncPositionController<double, double>> flywheel =
- AsyncPosControllerBuilder()
-	 .withMotor(3) // lift motor port 3
-	 .withGains({liftkP, liftkI, liftkD})
-	 .build();
-
-	 std::shared_ptr<AsyncPositionController<double, double>> indexer =
-AsyncPosControllerBuilder()
-	.withMotor(17) // lift motor port 3
-	.withGains({liftkP, liftkI, liftkD})
-	.build();
-*/
+	/*
+	const double liftkP = 0.001;
+	const double liftkI = 0.0001;
+	const double liftkD = 0.0001;
+	std::shared_ptr<AsyncPositionController<double, double>> asIntakeRight =
+	AsyncPosControllerBuilder()
+		.withMotor(19) // lift motor port 3
+		.withGains({liftkP, liftkI, liftkD})
+		.build();
+	std::shared_ptr<AsyncPositionController<double, double>> asIntakeLeft =
+	AsyncPosControllerBuilder()
+		.withMotor(16) // lift motor port 3
+		.withGains({liftkP, liftkI, liftkD})
+		.build();
+	std::shared_ptr<AsyncPositionController<double, double>> flywheel =
+	AsyncPosControllerBuilder()
+		.withMotor(3) // lift motor port 3
+		.withGains({liftkP, liftkI, liftkD})
+		.build();
+	std::shared_ptr<AsyncPositionController<double, double>> indexer =
+	AsyncPosControllerBuilder()
+		.withMotor(17) // lift motor port 3
+		.withGains({liftkP, liftkI, liftkD})
+		.build();
+	*/
 
 	std::shared_ptr<XDriveModel> model = std::static_pointer_cast<XDriveModel>(
-	 		std::static_pointer_cast<DefaultOdomChassisController>(chassis)->getModel()
-	 	);
+		std::static_pointer_cast<DefaultOdomChassisController>(chassis)->getModel()
+	);
 
 
-		//while(left_bumper.get_value() == 0){
-			//blooper = 100;
+
+	//while(left_bumper.get_value() == 0){
+		//blooper = 100;
 	//	pros::delay(50);}
-		//	chassis->moveDistance(-0.40_ft);
+	//	chassis->moveDistance(-0.40_ft);
 
-pros::delay(110);
-		blooper.move_relative(2000, 600);
-
-			pros::delay(110);
-		chassis->moveDistance(-0.40_ft);
-		blooper = 127;
-		indexer = -127;
-    pros::delay(120);
-		chassis->moveDistance(4.9_ft);
-
-
-
-		chassis -> turnAngle(127_deg);
-		pros::delay(125);
-     setIntakeLeft(127);
-		 setIntakeRight(-127);
-
-		//intakeRight = -127;
-	//	intakeLeft = 127;
-		chassis -> moveDistance(1.8_ft);
-
-		pros::delay(50);
-
-		chassis -> moveDistance(-0.05_ft);
-
-		pros::delay(50);
-		chassis -> moveDistance(-1.8_ft);
-
-
-	pros::delay(10000);
-	chassis -> moveDistance(-0.05_ft);
+	// pros::delay(110);
+	// blooper.move_relative(2000, 600);
+	//
+	// pros::delay(110);
+	// chassis->moveDistance(-0.40_ft);
+	// blooper = 127;
+	// indexer = -127;
+	// pros::delay(120);
+	// chassis->moveDistance(4.65_ft);
+	// pros::delay(100);
+	//
+	//
+	// chassis -> turnAngle(124_deg);
+	// pros::delay(125);
+	// setIntakeLeft(-127);
+	// setIntakeRight(-127);
+	//
+	// //intakeRight = -127;
+	// //	intakeLeft = 127;
+	// chassis -> moveDistance(1.96_ft);
+	//
+	// pros::delay(15);
+	//
+	// chassis -> moveDistance(-0.05_ft);
+	//
+	// pros::delay(1200);
+	// setIntakeLeft(0);
+	// setIntakeRight(0);
+	// chassis -> moveDistance(-1.8_ft);
+	//
+	//
+	// pros::delay(10000);
+	// chassis -> moveDistance(-0.05_ft);
 
 
 //auton for mid goal start auton
@@ -243,7 +229,6 @@ pros::delay(110);
 	chassis->moveDistance(-0.07_ft);
 	chassis->moveDistance(0.07_ft);
 	chassis->moveDistance(-0.07_ft);
-
 */
 
 
@@ -256,27 +241,55 @@ pros::delay(110);
 	//chassis -> driveToPoint({1_ft, 11_ft});
 
 
+	// starts near goal
+	// flips ball into goal
+	// drives to 2.33_ft, 10_ft
+	// open intakes
+	// intake ball
+	// turn to 6.375_ft, 8_ft
+	// drive forward 1_ft
+	// move back 4_in
+	// open intakes
+	// drive to 6_ft, 7_ft
+	// score stored ball into goal
+	// move back to 6_ft, 10_ft
+	// drive to 8.75_ft, 2_ft
+	// close intakes around ball
+	// strafe left until wall
+	// drive forward about 1_ft
+	// open loop turn for a while
+	// score stored ball
 
 
-
-
-/*
-	chassis->setState({1_ft, 11_ft, 315_deg});
-	blooper.move_relative(100, 100);
+	chassis->setState({2_ft, 10_ft, 315_deg});
+	blooper.move_relative(500, 600);
+	chassis->driveToPoint({2.33_ft, 10_ft});
 	intakeRight.move_relative(-3000, 100);
 	intakeLeft.move_relative(3000, 100);
-	chassis -> driveToPoint({2_ft, 10_ft});
-	chassis -> turnToPoint({6_ft, 8_ft});
-	chassis -> driveToPoint({6_ft, 8_ft});
-	chassis ->  setMoveThreshold(10_cm);
-	chassis -> turnToPoint({6_ft, 6.5_ft});
-	chassis -> driveToPoint({6_ft, 6.5_ft});
+	blooper = 127;
+	indexer = -127;
+	pros::delay(500);
+	blooper = 0;
+	indexer = 0;
+	chassis->turnToPoint({6.375_ft, 8_ft});
+
+
+
+
+
+
+	// chassis->driveToPoint({2_ft, 10_ft});
+	chassis->turnToPoint({6_ft, 8_ft});
+	chassis->driveToPoint({6_ft, 8_ft});
+
+	chassis->turnToPoint({6_ft, 6.5_ft});
+	chassis->driveToPoint({6_ft, 6.5_ft});
+
 	chassis->moveDistance(-1_ft);
 	chassis->moveDistance(1_ft);
 	chassis->moveDistance(-1_ft);
 	chassis->moveDistance(1_ft);
 
-*/
 
 
 
@@ -309,12 +322,6 @@ pros::delay(110);
 	//while intakes are being release the bot is driving to prime for left goal
 
 	// get to turn spot and turni
-
-
-
-
-
-
 
 
 

@@ -42,43 +42,31 @@ blooper = blooperPower;
 
 }
 
-void setIntakeMotors(){
-  if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
-  {
+void setIntakeMotors() {
+  if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
     intakeWidener();
   }
-
   else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-  int powerIntakes = 127;
+    int powerIntakes = 127;
 
-  setIntakeLeft(-powerIntakes);
-  setIntakeRight(-powerIntakes);
+    setIntakeLeft(-powerIntakes);
+    setIntakeRight(-powerIntakes);
   }
-
   else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
-  int powerIntakes = 127;
+    int powerIntakes = 127;
 
-  setIntakeLeft(-powerIntakes);
-  setIntakeRight(-powerIntakes);
+    setIntakeLeft(-powerIntakes);
+    setIntakeRight(-powerIntakes);
   }
+  else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+    int powerIntakes = 127;
 
-
-else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-int powerIntakes = 127;
-
-setIntakeLeft(-powerIntakes);
-setIntakeRight(-powerIntakes);
-}
-
-else{
-setIntakeLeft(0);
-setIntakeRight(0);
-
-}
-
-
-
-
+    setIntakeLeft(-powerIntakes);
+    setIntakeRight(-powerIntakes);
+  } else {
+    setIntakeLeft(0);
+    setIntakeRight(0);
+  }
 }
 
 
