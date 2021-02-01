@@ -261,17 +261,233 @@ void autonomous() {
 	// score stored ball
 
 
-	chassis->setState({2_ft, 10_ft, 315_deg});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//chassis->setState({1.5_ft, 10.66_ft, 315_deg});
+	chassis->setState({2.0_ft, 10.66_ft, -31.2_deg});
+
 	blooper.move_relative(500, 600);
-	chassis->driveToPoint({2.33_ft, 10_ft});
-	intakeRight.move_relative(-3000, 100);
-	intakeLeft.move_relative(3000, 100);
+	pros::delay(700);
+
+	intakeRight.move_relative(-5000, 600);
+	intakeLeft.move_relative(5000, 600);
+	chassis -> setMaxVelocity(600);
+
+
 	blooper = 127;
 	indexer = -127;
-	pros::delay(500);
+	pros::delay(1600);
 	blooper = 0;
 	indexer = 0;
-	chassis->turnToPoint({6.375_ft, 8_ft});
+	chassis->driveToPoint({6.9_ft, 9_ft});
+
+	chassis->turnToPoint({6.5_ft, 6_ft});
+	chassis ->turnAngle(2_deg);
+	chassis->moveDistance(1_ft);
+
+
+	model -> forward(50);
+	pros::delay(180);
+	model -> forward(15);
+	pros::delay(15);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(90);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(100);
+	model -> forward(100);
+	pros::delay(200);
+
+
+	model -> forward(-50);
+	pros::delay(180);
+	model -> forward(-15);
+	pros::delay(15);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-90);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(250);
+
+	model -> forward(50);
+	pros::delay(180);
+	model -> forward(15);
+	pros::delay(15);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(90);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(100);
+	model -> forward(100);
+	pros::delay(200);
+
+
+	model -> forward(-50);
+	pros::delay(180);
+	model -> forward(-15);
+	pros::delay(15);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-90);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(250);
+	model -> forward(50);
+	pros::delay(180);
+	model -> forward(15);
+	pros::delay(15);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(90);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(100);
+	model -> forward(100);
+	pros::delay(200);
+
+
+	model -> forward(-50);
+	pros::delay(180);
+	model -> forward(-15);
+	pros::delay(15);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-90);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(250);
+
+	model -> forward(100);
+	pros::delay(300);
+
+
+
+
+
+	intakeRight.move_relative(3000, 100);
+	intakeLeft.move_relative(-3000, 100);
+	chassis -> turnAngle(-12_deg);
+	chassis->moveDistance(0.7_ft);
+	blooper = 127;
+	indexer = -127;
+	pros::delay(2000);
+	blooper = 0;
+	indexer = -0;
+	chassis->driveToPoint({6_ft, 9.5_ft},true);
+	pros::delay(1000);
+	chassis->driveToPoint({10_ft, 2_ft});
+	intakeRight.move_relative(-5000, 600);
+	intakeLeft.move_relative(5000, 600);
+	blooper = 127;
+	indexer = -127;
+	pros::delay(1500);
+	intakeRight.move_relative(3000, 100);
+	intakeLeft.move_relative(-3000, 100);
+	blooper = 0;
+	indexer = -0;
+
+//field reset code
+	pros::delay(300);
+	model -> strafe(-100);
+	pros::delay(300);
+	model -> strafe(-20);
+	pros::delay(300);
+
+
+	model -> forward(20);
+	pros::delay(800);
+	model -> rotate(50);
+	pros::delay(800);
+
+	blooper = 127;
+	indexer = -127;
+	pros::delay(1500);
+	blooper = 0;
+	indexer = -0;
+	model -> forward(-15);
+	pros::delay(15);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-90);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(300);
+
+
+
+
+
+	//
+	// chassis->turnToPoint({12_ft, 0_ft});
+	// model -> forward(15);
+	// pros::delay(15);
+	// model -> forward(50);
+	// pros::delay(50);
+	// model -> forward(90);
+	// pros::delay(50);
+	// model -> forward(100);
+	// pros::delay(300);
+	// blooper = 127;
+	// indexer = -127;
+	// pros::delay(1500);
+	// blooper = 0;
+	// indexer = -0;
+	// model -> forward(-15);
+	// pros::delay(15);
+	// model -> forward(-50);
+	// pros::delay(50);
+	// model -> forward(-90);
+	// pros::delay(50);
+	// model -> forward(-100);
+	// pros::delay(300);
+
+
+
+	//may need to turni
+
+
+
+
+
+
+//	intakeRight.move_relative(3000, 100);
+	//intakeLeft.move_relative(-3000, 100);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -279,16 +495,16 @@ void autonomous() {
 
 
 	// chassis->driveToPoint({2_ft, 10_ft});
-	chassis->turnToPoint({6_ft, 8_ft});
-	chassis->driveToPoint({6_ft, 8_ft});
-
-	chassis->turnToPoint({6_ft, 6.5_ft});
-	chassis->driveToPoint({6_ft, 6.5_ft});
-
-	chassis->moveDistance(-1_ft);
-	chassis->moveDistance(1_ft);
-	chassis->moveDistance(-1_ft);
-	chassis->moveDistance(1_ft);
+	// chassis->turnToPoint({6_ft, 8_ft});
+	// chassis->driveToPoint({6_ft, 8_ft});
+	//
+	// chassis->turnToPoint({6_ft, 6.5_ft});
+	// chassis->driveToPoint({6_ft, 6.5_ft});
+	//
+	// chassis->moveDistance(-1_ft);
+	// chassis->moveDistance(1_ft);
+	// chassis->moveDistance(-1_ft);
+	// chassis->moveDistance(1_ft);
 
 
 
