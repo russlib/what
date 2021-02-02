@@ -2,6 +2,23 @@
 
 
 
+
+//todo list
+
+
+// make functions to use sesnsors to do hard resets.
+// line sensors reset
+//wall sensors resets
+// ultrasonic ball detection
+
+// ball indexer
+
+
+//better driver skills trackers
+
+
+
+
 /**
  * A callback function for LLEMU's center button.
  *
