@@ -128,7 +128,7 @@ void autonomous() {
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 14.2_in, 2.15_in, 2.75_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.54_in, 2.15_in, 2.787_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
@@ -166,7 +166,12 @@ void autonomous() {
 	std::shared_ptr<XDriveModel> model = std::static_pointer_cast<XDriveModel>(
 		std::static_pointer_cast<DefaultOdomChassisController>(chassis)->getModel()
 	);
-chassis ->setMaxVelocity(100);
+
+	std::string startTest = chassis -> getState().str();
+	pros::lcd::set_text(2, startTest);
+
+
+chassis ->setMaxVelocity(600);
 chassis -> turnAngle(3600_deg);
 
 	//while(left_bumper.get_value() == 0){
@@ -565,6 +570,15 @@ chassis -> turnAngle(3600_deg);
 
 
 
+	std::string potentTest = chassis -> getState().str();
+	pros::lcd::set_text(2, potentTest);
+
+while(true){
+	std::cout << "Encoder Position: " << chassis -> getState().str() << std::endl;\
+	pros::delay(100);
+}
+
+
 
 }
 
@@ -620,7 +634,7 @@ void opcontrol() {
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 14.2_in, 2.15_in, 2.75_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.2_in, 2.15_in, 2.787_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();

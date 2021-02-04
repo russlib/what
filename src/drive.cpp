@@ -42,8 +42,8 @@ void encoderPositions() {
 	if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
 		//std::string encoderTextOne = std::to_string(encoderOne.get_value());
 		//pros::lcd::set_text(1, encoderTextOne);
-		std::string potentTest = std::to_string(encoderThree.get_value());
-		pros::lcd::set_text(2, potentTest);
+		//std::string potentTest = std::to_string(encoderThree.get_value());
+		//pros::lcd::set_text(2, potentTest);
 
 		std::string encoderTextThree = std::to_string(limitOne.get_value());
 		pros::lcd::set_text(1, encoderTextThree);
