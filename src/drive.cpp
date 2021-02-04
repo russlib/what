@@ -31,7 +31,8 @@ void encoderPositions() {
 
 	//std::cout << "Motor Position: " << backRight.get_position() << std::endl;
 
-	std::cout << "Encoder Position: " << encoderOne.get_value() << std::endl;
+	std::cout << "Encoder Position: " <<  
+ << std::endl;
 
 	//encoder two is in reality encoder 3
 

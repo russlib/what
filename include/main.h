@@ -72,9 +72,12 @@ void opcontrol(void);
 }
 #endif
 
+
+#include "sensing.hpp"
 #include "globals.hpp"
 #include "drive.hpp"
 #include "intakes.hpp"
+
 
 
 #ifdef __cplusplus

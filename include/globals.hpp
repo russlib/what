@@ -22,3 +22,6 @@ extern pros::ADIAnalogIn rightPotent;
 extern pros::ADIAnalogIn leftPotent;
 
 extern pros::ADIDigitalIn limitOne;
+extern pros::ADIAnalogIn lineSensOne;
+extern pros::ADIAnalogIn lineSensTwo;
+extern pros::ADIAnalogIn lineSensThree;
