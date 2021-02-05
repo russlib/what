@@ -8,7 +8,7 @@ pros::Motor backRight(14, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER
 
 // Intake motors
 pros::Motor intakeRight(10, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor intakeLeft(16, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor intakeLeft(13, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // The part right after the ball intakes
 pros::Motor indexer(3, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
