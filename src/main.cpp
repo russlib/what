@@ -128,7 +128,7 @@ void autonomous() {
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.54_in, 2.15_in, 2.787_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.522_in, 2.11_in, 2.787_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
@@ -168,11 +168,27 @@ void autonomous() {
 	);
 
 	std::string startTest = chassis -> getState().str();
-	pros::lcd::set_text(2, startTest);
+// 	pros::lcd::set_text(2, startTest);
+// pros::delay(500);
+// chassis -> setMaxVelocity(100);
+// chassis->setState({0_ft, 0_ft, 0_deg});
+// chassis -> driveToPoint({2_ft, 0_ft});
+// chassis -> driveToPoint({2_ft, 2_ft});
+// chassis -> driveToPoint({0_ft, 2_ft});
+// chassis -> driveToPoint({0_ft, 0_ft});
+// chassis -> turnToPoint({2_ft, 0_ft});
+
+
+
+
+
+
 
 
 chassis ->setMaxVelocity(600);
 chassis -> turnAngle(3600_deg);
+
+
 
 	//while(left_bumper.get_value() == 0){
 		//blooper = 100;
@@ -570,12 +586,17 @@ chassis -> turnAngle(3600_deg);
 
 
 
-	std::string potentTest = chassis -> getState().str();
-	pros::lcd::set_text(2, potentTest);
+
 
 while(true){
-	std::cout << "Encoder Position: " << chassis -> getState().str() << std::endl;\
-	pros::delay(100);
+	std::cout << "Encoder Position: " << chassis -> getState().str() << std::endl;
+
+
+	std::string secondEncoder = std::to_string(encoderTwo.get_value());
+	std::cout << "tracking ticks: " << secondEncoder << std::endl;
+
+	pros::lcd::set_text(1, secondEncoder);
+	pros::delay(1000);
 }
 
 
@@ -634,7 +655,7 @@ void opcontrol() {
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.2_in, 2.15_in, 2.787_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.52_in, 2.15_in, 2.787_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
