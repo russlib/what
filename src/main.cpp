@@ -124,7 +124,7 @@ void autonomous() {
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.522_in, 2.11_in, 2.787_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.38_in, 2.11_in, 2.787_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
@@ -152,6 +152,40 @@ void autonomous() {
 // chassis -> driveToPoint({0_ft, 0_ft});
 // chassis -> turnToPoint({2_ft, 0_ft});
 
+//speed and states
+//chassis->setState({1.5_ft, 10.66_ft, 315_deg});
+//chassis -> setMaxVelocity(600);
+
+//drivetrain movement
+// 	chassis->driveToPoint({6.9_ft, 9_ft});
+// 	chassis->turnToPoint({6.5_ft, 6_ft});
+// 	chassis ->turnAngle(2_deg);
+// 	chassis->moveDistance(1_ft);
+//model -> strafe(-20);
+
+//delays
+// 	pros::delay(700);
+
+//moves intakes foward(?)
+// 	intakeRight.move_relative(-5000, 600);
+// 	intakeLeft.move_relative(5000, 600);
+
+//moves blooper and indexer forwar(?)
+// 	blooper.move_relative(500, 600);
+// 	blooper = 127;
+// 	indexer = -127;
+
+//soft start/stops
+// 	model -> forward(-50);
+// 	pros::delay(180);
+// 	model -> forward(-15);
+// 	pros::delay(15);
+// 	model -> forward(-50);
+// 	pros::delay(50);
+// 	model -> forward(-90);
+// 	pros::delay(50);
+// 	model -> forward(-100);
+// 	pros::delay(250);
 
 
 
@@ -159,8 +193,106 @@ void autonomous() {
 
 
 
-chassis ->setMaxVelocity(600);
-chassis -> turnAngle(3600_deg);
+
+chassis->setState({1.616_ft, 10.717_ft, -31_deg});
+chassis ->setMaxVelocity(200);
+blooper.move_relative(1000, 600);
+chassis -> turnToPoint({2.5_ft, 10_ft});
+chassis -> driveToPoint({2.5_ft, 10_ft});
+chassis ->setMaxVelocity(90);
+
+chassis -> turnToPoint({6.5_ft, 8.2_ft});
+chassis -> driveToPoint({6.5_ft, 8.2_ft});
+
+chassis -> turnToPoint({6.4_ft, 6_ft});
+
+
+
+
+	model -> forward(15);
+	pros::delay(50);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(300);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(-15);
+	pros::delay(50);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(340);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(15);
+	pros::delay(50);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(300);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(-15);
+	pros::delay(50);
+	model -> forward(-50);
+	pros::delay(30);
+	model -> forward(-100);
+	pros::delay(340);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(15);
+	pros::delay(50);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(300);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(-15);
+	pros::delay(50);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(340);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(15);
+	pros::delay(50);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(300);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(-15);
+	pros::delay(50);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(340);
+	model -> forward(0);
+	pros::delay(300);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

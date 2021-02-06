@@ -11,11 +11,11 @@ void intakeWidener(){
     double thisWide = 700;
     double intakeTarget = thisWide;
 
-    if((intakeTarget > rightPotent.get_value()) or (intakeTarget +300 < rightPotent.get_value())){
+    if((intakeTarget > rightPotent.get_value()) or (intakeTarget +600 < rightPotent.get_value())){
       int intakeWidePowerR = (intakeTarget - rightPotent.get_value());
 	    setIntakeRight(intakeWidePowerR);
   }
-      if((intakeTarget > leftPotent.get_value()) or (intakeTarget +300 < leftPotent.get_value())  ){
+      if((intakeTarget > leftPotent.get_value()) or (intakeTarget +600 < leftPotent.get_value())  ){
        int intakeWidePowerL = (intakeTarget - leftPotent.get_value());
        setIntakeLeft(intakeWidePowerL);
 }
