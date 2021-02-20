@@ -119,12 +119,12 @@ void autonomous() {
 		.withSensors(
 			ADIEncoder{'E', 'F'}, // left encoder
 			ADIEncoder{'C', 'D', true},  // right encoder (reversed)
-			ADIEncoder{'A', 'B'}  // middle encoder
+			ADIEncoder{'A', 'B', true}  // middle encoder
 		)
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.38_in, 2.11_in, 2.787_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 13.93_in, 2.11_in, 2.75_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
@@ -193,18 +193,31 @@ void autonomous() {
 
 
 
-
+pros::delay(200);
 chassis->setState({1.616_ft, 10.717_ft, -31_deg});
+pros::delay(200);
 chassis ->setMaxVelocity(200);
 blooper.move_relative(1000, 600);
 chassis -> turnToPoint({2.5_ft, 10_ft});
+	intakeRight.move_relative(-5000, 600);
+	intakeLeft.move_relative(5000, 600);
+	blooper = 127;
+	indexer = -127;
+	pros::delay(700);
+	blooper = 0;
+	indexer = 0;
 chassis -> driveToPoint({2.5_ft, 10_ft});
 chassis ->setMaxVelocity(90);
 
-chassis -> turnToPoint({6.5_ft, 8.2_ft});
-chassis -> driveToPoint({6.5_ft, 8.2_ft});
 
-chassis -> turnToPoint({6.4_ft, 6_ft});
+chassis -> turnToPoint({6.5_ft, 8.6_ft});
+chassis -> driveToPoint({6.5_ft, 8.6_ft});
+
+//almost works but gets caught
+//chassis -> turnToPoint({6.5_ft, 8.3_ft});
+//chassis -> driveToPoint({6.5_ft, 8.3_ft});
+
+chassis -> turnToPoint({6.66_ft, 6_ft});
 
 
 
@@ -227,6 +240,8 @@ chassis -> turnToPoint({6.4_ft, 6_ft});
 	model -> forward(0);
 	pros::delay(300);
 
+	chassis-> turnAngle(10_deg);
+
 	model -> forward(15);
 	pros::delay(50);
 	model -> forward(50);
@@ -235,6 +250,8 @@ chassis -> turnToPoint({6.4_ft, 6_ft});
 	pros::delay(300);
 	model -> forward(0);
 	pros::delay(300);
+
+
 
 	model -> forward(-15);
 	pros::delay(50);
@@ -245,6 +262,11 @@ chassis -> turnToPoint({6.4_ft, 6_ft});
 	model -> forward(0);
 	pros::delay(300);
 
+
+	chassis-> turnAngle(10_deg);
+
+
+
 	model -> forward(15);
 	pros::delay(50);
 	model -> forward(50);
@@ -263,12 +285,35 @@ chassis -> turnToPoint({6.4_ft, 6_ft});
 	model -> forward(0);
 	pros::delay(300);
 
+	chassis-> turnAngle(10_deg);
+
 	model -> forward(15);
 	pros::delay(50);
 	model -> forward(50);
 	pros::delay(50);
 	model -> forward(100);
 	pros::delay(300);
+	model -> forward(0);
+	pros::delay(300);
+
+	model -> forward(-15);
+	pros::delay(50);
+	model -> forward(-50);
+	pros::delay(50);
+	model -> forward(-100);
+	pros::delay(340);
+	model -> forward(0);
+	pros::delay(300);
+
+
+	chassis-> turnAngle(15_deg);
+
+	model -> forward(15);
+	pros::delay(50);
+	model -> forward(50);
+	pros::delay(50);
+	model -> forward(100);
+	pros::delay(500);
 	model -> forward(0);
 	pros::delay(300);
 
@@ -409,12 +454,12 @@ void opcontrol() {
 		.withSensors(
 			ADIEncoder{'E', 'F'}, // left encoder
 			ADIEncoder{'C', 'D', true},  // right encoder (reversed)
-			ADIEncoder{'A', 'B'}  // middle encoder
+			ADIEncoder{'A', 'B', true}  // middle encoder
 		)
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.787_in, 14.52_in, 2.15_in, 2.787_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 13.93_in, 2.15_in, 2.75_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
