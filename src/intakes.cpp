@@ -8,7 +8,7 @@ void intakeWidener(){
 //todo check to see what efficency valuse give
 //changed to opening with potentiometer
 
-    double thisWide = 700;
+    double thisWide = 1000;
     double intakeTarget = thisWide;
 
     if((intakeTarget > rightPotent.get_value()) or (intakeTarget +600 < rightPotent.get_value())){

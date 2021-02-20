@@ -23,8 +23,8 @@ pros::ADIEncoder encoderOne('C', 'D', false);
 pros::ADIEncoder encoderTwo('A', 'B', false);
 pros::ADIEncoder encoderThree('E', 'F', false);
 
-pros::ADIAnalogIn leftPotent('G');
-pros::ADIAnalogIn rightPotent('H');
+pros::ADIAnalogIn leftPotent('H');
+pros::ADIAnalogIn rightPotent('G');
 pros::ADIDigitalIn limitOne({{9,'A'}});
 
 pros::ADIAnalogIn lineSensOne ({{9,'B'}});

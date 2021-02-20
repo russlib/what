@@ -95,9 +95,9 @@ void autonomous() {
 			15   // Bottom left
 		)
 		.withGains(
-			{0.0009, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
+			{0.0009, 0, 0.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
 			{0.0009,0, 0.000015},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
-			{0.0007, 0, 00.00001}  // Angle controller gains (helps drive straight)
+			{0.0007, 0, 0.00001}  // Angle controller gains (helps drive straight)
 			/*
 			this works mostly
 			{0.001, 0, 0.0001}, // Distance controller gains
@@ -124,7 +124,7 @@ void autonomous() {
 		// Green gearset
 		// specify the tracking wheels diameter (2.75 in), track (7 in), and TPR (360)
 		// specify the middle encoder distance (1 in) and diameter (2.75 in)
-		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 13.93_in, 2.11_in, 2.75_in}, quadEncoderTPR})
+		.withDimensions(AbstractMotor::gearset::green, {{2.75_in, 14.395_in, 2.11_in, 2.75_in}, quadEncoderTPR})
 		.withOdometry(StateMode::FRAME_TRANSFORMATION, 2_mm, 1_deg)
 		.withClosedLoopControllerTimeUtil(5, 5, 25_ms)
 		.buildOdometry();
@@ -143,6 +143,9 @@ void autonomous() {
 
 	std::string startTest = chassis -> getState().str();
 	pros::lcd::set_text(2, startTest);
+
+
+
 // pros::delay(500);
 // chassis -> setMaxVelocity(100);
 // chassis->setState({0_ft, 0_ft, 0_deg});
@@ -189,45 +192,48 @@ void autonomous() {
 
 
 
+// chassis->setState({0_ft, 0_ft, 0_deg});
+// chassis -> moveDistance(2_ft);
+// chassis -> turnAngle(180_deg);
+// chassis -> moveDistance(2_ft);
 
 
-
-
+//
 pros::delay(200);
-chassis->setState({1.616_ft, 10.717_ft, -31_deg});
+chassis->setState({1.616_ft, 1.283_ft, 31_deg});
 pros::delay(200);
 chassis ->setMaxVelocity(200);
-blooper.move_relative(1000, 600);
-chassis -> turnToPoint({2.5_ft, 10_ft});
+blooper.move_relative(1500, 600);
+chassis -> driveToPoint({2.5_ft, 2_ft});
 	intakeRight.move_relative(-5000, 600);
 	intakeLeft.move_relative(5000, 600);
 	blooper = 127;
 	indexer = -127;
-	pros::delay(700);
+	pros::delay(900);
 	blooper = 0;
 	indexer = 0;
-chassis -> driveToPoint({2.5_ft, 10_ft});
 chassis ->setMaxVelocity(90);
 
+chassis -> turnToPoint({6.5_ft, 3.4_ft});
+chassis -> driveToPoint({6.5_ft, 3.4_ft});
+chassis -> turnAngle(58_deg);
+chassis -> moveDistance(8_in);
 
-chassis -> turnToPoint({6.5_ft, 8.6_ft});
-chassis -> driveToPoint({6.5_ft, 8.6_ft});
-
-//almost works but gets caught
-//chassis -> turnToPoint({6.5_ft, 8.3_ft});
-//chassis -> driveToPoint({6.5_ft, 8.3_ft});
-
-chassis -> turnToPoint({6.66_ft, 6_ft});
-
-
-
-
+// //almost works but gets caught
+// //chassis -> turnToPoint({6.5_ft, 8.3_ft});
+// //chassis -> driveToPoint({6.5_ft, 8.3_ft});
+//
+// chassis -> turnToPoint({6.66_ft, 6_ft});
+//
+//
+//
+//
 	model -> forward(15);
 	pros::delay(50);
 	model -> forward(50);
 	pros::delay(50);
 	model -> forward(100);
-	pros::delay(300);
+	pros::delay(330);
 	model -> forward(0);
 	pros::delay(300);
 
@@ -236,11 +242,11 @@ chassis -> turnToPoint({6.66_ft, 6_ft});
 	model -> forward(-50);
 	pros::delay(50);
 	model -> forward(-100);
-	pros::delay(340);
+	pros::delay(30);
 	model -> forward(0);
 	pros::delay(300);
 
-	chassis-> turnAngle(10_deg);
+	chassis-> turnAngle(7_deg);
 
 	model -> forward(15);
 	pros::delay(50);
@@ -258,12 +264,12 @@ chassis -> turnToPoint({6.66_ft, 6_ft});
 	model -> forward(-50);
 	pros::delay(30);
 	model -> forward(-100);
-	pros::delay(340);
+	pros::delay(310);
 	model -> forward(0);
 	pros::delay(300);
 
 
-	chassis-> turnAngle(10_deg);
+	chassis-> turnAngle(5_deg);
 
 
 
@@ -281,11 +287,11 @@ chassis -> turnToPoint({6.66_ft, 6_ft});
 	model -> forward(-50);
 	pros::delay(50);
 	model -> forward(-100);
-	pros::delay(340);
+	pros::delay(310);
 	model -> forward(0);
 	pros::delay(300);
 
-	chassis-> turnAngle(10_deg);
+	chassis-> turnAngle(5_deg);
 
 	model -> forward(15);
 	pros::delay(50);
@@ -301,12 +307,12 @@ chassis -> turnToPoint({6.66_ft, 6_ft});
 	model -> forward(-50);
 	pros::delay(50);
 	model -> forward(-100);
-	pros::delay(340);
+	pros::delay(310);
 	model -> forward(0);
 	pros::delay(300);
 
 
-	chassis-> turnAngle(15_deg);
+	chassis-> turnAngle(10_deg);
 
 	model -> forward(15);
 	pros::delay(50);
@@ -325,6 +331,8 @@ chassis -> turnToPoint({6.66_ft, 6_ft});
 	pros::delay(340);
 	model -> forward(0);
 	pros::delay(300);
+
+
 
 
 
@@ -430,9 +438,9 @@ void opcontrol() {
 			15   // Bottom left
 		)
 		.withGains(
-			{0.0009, 0, 00.00003}, // Distance controller gains 0.00005 works well but it stops and tilts bot
+			{0.0009, 0, 0.0000}, // Distance controller gains 0.00005 works well but it stops and tilts bot
 			{0.0009,0, 0.000015},// 000006 works well // Turn controller gains  {0.001, 0, 0.0000020}
-			{0.0007, 0, 00.00001}  // Angle controller gains (helps drive straight)
+			{0.0007, 0, 0.00001}  // Angle controller gains (helps drive straight)
 			/*
 			this works mostly
 			{0.001, 0, 0.0001}, // Distance controller gains

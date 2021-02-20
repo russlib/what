@@ -45,7 +45,7 @@ void encoderPositions() {
 		//std::string potentTest = std::to_string(encoderThree.get_value());
 		//pros::lcd::set_text(2, potentTest);
 
-		std::string encoderTextThree = std::to_string(encoderTwo.get_value());
+		std::string encoderTextThree = std::to_string(rightPotent.get_value());
 		pros::lcd::set_text(1, encoderTextThree);
 		std::string enctex = std::to_string(encoderOne.get_value());
 		pros::lcd::set_text(0, enctex);
